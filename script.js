@@ -1,0 +1,143 @@
+// --- Sticky Navbar ---
+const header = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) header.classList.add('scrolled');
+    else header.classList.remove('scrolled');
+});
+
+// --- Scroll Reveal Animations ---
+const reveals = document.querySelectorAll('.reveal');
+const revealOnScroll = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            observer.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.15, rootMargin: "0px 0px -50px 0px" });
+
+reveals.forEach(reveal => revealOnScroll.observe(reveal));
+window.addEventListener('load', () => {
+    reveals.forEach(reveal => {
+        if (reveal.getBoundingClientRect().top < window.innerHeight - 50) {
+            reveal.classList.add('active');
+        }
+    });
+});
+
+// --- Zen Mode Toggle ---
+const themeToggle = document.getElementById('theme-toggle');
+const html = document.documentElement;
+
+themeToggle.addEventListener('click', () => {
+    if (html.getAttribute('data-theme') === 'light') {
+        html.setAttribute('data-theme', 'zen');
+    } else {
+        html.setAttribute('data-theme', 'light');
+    }
+});
+
+// --- Dynamic Mood Slider ---
+const moodSlider = document.getElementById('mood-slider');
+const rootStyles = document.documentElement.style;
+
+moodSlider.addEventListener('input', (e) => {
+    const val = e.target.value;
+    // Visually adjust the background colors based on mood input
+    // 0 = Heavy/Anxious (Grayish Blues), 100 = Calm/Light (Bright Lavender/Mint)
+    if (val < 40) {
+        rootStyles.setProperty('--soft-blue', '#64748b'); // Slate
+        rootStyles.setProperty('--mint', '#94a3b8');     // Gray-blue
+    } else if (val >= 40 && val < 70) {
+        rootStyles.setProperty('--soft-blue', '#a3c4f3'); // Reset soft blue
+        rootStyles.setProperty('--mint', '#81e6d9');      // Teal
+    } else {
+        rootStyles.setProperty('--soft-blue', '#a3c4f3');
+        rootStyles.setProperty('--mint', '#8ee4af');      // Original Mint
+    }
+});
+
+// --- Draggable Therapist Slider ---
+const slider = document.getElementById('therapist-slider');
+let isDown = false;
+let startX;
+let scrollLeft;
+
+slider.addEventListener('mousedown', (e) => {
+    isDown = true;
+    slider.style.cursor = 'grabbing';
+    startX = e.pageX - slider.offsetLeft;
+    scrollLeft = slider.scrollLeft;
+});
+slider.addEventListener('mouseleave', () => {
+    isDown = false;
+    slider.style.cursor = 'grab';
+});
+slider.addEventListener('mouseup', () => {
+    isDown = false;
+    slider.style.cursor = 'grab';
+});
+slider.addEventListener('mousemove', (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - slider.offsetLeft;
+    const walk = (x - startX) * 2; // Scroll speed
+    slider.scrollLeft = scrollLeft - walk;
+});
+
+// --- Interactive AI Chat Widget ---
+const chatToggle = document.getElementById('chat-toggle');
+const chatWindow = document.getElementById('chat-window');
+const closeChat = document.getElementById('close-chat');
+const sendBtn = document.getElementById('send-btn');
+const chatInput = document.getElementById('chat-input-field');
+const chatBody = document.getElementById('chat-body');
+
+// Toggle chat window
+chatToggle.addEventListener('click', () => chatWindow.classList.toggle('active'));
+closeChat.addEventListener('click', () => chatWindow.classList.remove('active'));
+
+// Handle sending messages
+function sendMessage() {
+    const text = chatInput.value.trim();
+    if (text === '') return;
+
+    // Add User Message
+    const userMsg = document.createElement('div');
+    userMsg.classList.add('message', 'user-msg');
+    userMsg.textContent = text;
+    chatBody.appendChild(userMsg);
+    chatInput.value = '';
+    chatBody.scrollTop = chatBody.scrollHeight;
+
+    // Simulate AI Typing
+    const typingIndicator = document.createElement('div');
+    typingIndicator.classList.add('typing-indicator');
+    typingIndicator.textContent = 'SoulMi AI is typing...';
+    chatBody.appendChild(typingIndicator);
+    chatBody.scrollTop = chatBody.scrollHeight;
+
+    // Simulate AI Response after 1.5 seconds
+    setTimeout(() => {
+        chatBody.removeChild(typingIndicator);
+        
+        const aiResponses = [
+            "I hear you. Take a deep breath, I'm right here with you.",
+            "It's completely okay to feel that way. You are in a safe space.",
+            "That sounds difficult. Would you like to try a quick grounding exercise?",
+            "Thank you for sharing that with me. I'm listening."
+        ];
+        const randomResponse = aiResponses[Math.floor(Math.random() * aiResponses.length)];
+        
+        const aiMsg = document.createElement('div');
+        aiMsg.classList.add('message', 'ai-msg');
+        aiMsg.textContent = randomResponse;
+        chatBody.appendChild(aiMsg);
+        chatBody.scrollTop = chatBody.scrollHeight;
+    }, 1500);
+}
+
+sendBtn.addEventListener('click', sendMessage);
+chatInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') sendMessage();
+});

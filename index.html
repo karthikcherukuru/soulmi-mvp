@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoulMi | A Safe Place for Your Mind</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="bg-shape shape-1"></div>
+    <div class="bg-shape shape-2"></div>
+
+    <header id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">SoulMi<span>.</span></a>
+            <nav class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#therapists">Find Therapist</a>
+                <a href="#features">Features</a>
+            </nav>
+            <div class="nav-actions">
+                <div class="theme-toggle" id="theme-toggle" title="Toggle Zen Mode">
+                    <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                    <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                </div>
+                <a href="#register" class="btn-primary nav-btn">Register</a>
+            </div>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content reveal">
+            <div class="chip">Your emotional support companion</div>
+            <h1>A safe place for your mind to breathe.</h1>
+            <p>SoulMi helps you understand your emotions, connect with professionals, and find a supportive community that truly listens.</p>
+            
+            <div class="mood-widget">
+                <label for="mood-slider">How is your mind feeling right now?</label>
+                <div class="slider-wrapper">
+                    <span class="mood-label">Anxious</span>
+                    <input type="range" id="mood-slider" min="0" max="100" value="80">
+                    <span class="mood-label">Calm</span>
+                </div>
+            </div>
+
+            <div class="hero-actions">
+                <a href="#features" class="btn-primary">Explore Platform</a>
+            </div>
+        </div>
+        
+        <div class="hero-visual reveal">
+            <div class="visual-blob"></div>
+            
+            <div class="floating-card card-1">
+                <div class="icon-box lavender">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"/><path d="M8 14C8 14 9.5 16 12 16C14.5 16 16 14 16 14"/><path d="M9 9H9.01"/><path d="M15 9H15.01"/></svg>
+                </div>
+                <div class="card-text">
+                    <h4>Mood Tracker</h4>
+                    <p>Feeling Calm today</p>
+                </div>
+            </div>
+
+            <div class="floating-card card-2">
+                <div class="icon-box mint">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                </div>
+                <div class="card-text">
+                    <h4>SoulMi AI</h4>
+                    <p>I'm here for you, always.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="therapists" class="therapists-section">
+        <div class="section-header reveal">
+            <h2>Find your perfect match.</h2>
+            <p>Swipe through certified professionals ready to listen.</p>
+        </div>
+        
+        <div class="therapist-slider" id="therapist-slider">
+            <div class="therapist-card">
+                <div class="t-image t1"></div>
+                <h4>Dr. Sarah Jenkins</h4>
+                <p>Anxiety & Stress</p>
+                <div class="t-action">View Profile</div>
+            </div>
+            <div class="therapist-card">
+                <div class="t-image t2"></div>
+                <h4>Dr. Amit Patel</h4>
+                <p>Depression & Trauma</p>
+                <div class="t-action">View Profile</div>
+            </div>
+            <div class="therapist-card">
+                <div class="t-image t3"></div>
+                <h4>Elena Rodriguez</h4>
+                <p>Relationship Counseling</p>
+                <div class="t-action">View Profile</div>
+            </div>
+            <div class="therapist-card">
+                <div class="t-image t4"></div>
+                <h4>David Kim</h4>
+                <p>Career & Burnout</p>
+                <div class="t-action">View Profile</div>
+            </div>
+            <div class="therapist-card">
+                <div class="t-image t5"></div>
+                <h4>Dr. Maya Singh</h4>
+                <p>Holistic Therapy</p>
+                <div class="t-action">View Profile</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <div class="section-header reveal">
+            <h2>Everything you need, in one safe space.</h2>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card reveal">
+                <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a2 2 0 0 1 2 2c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2zm0 6c4.41 0 8 3.59 8 8v4H4v-4c0-4.41 3.59-8 8-8z"/></svg></div>
+                <h3>SoulMi AI Chatbot</h3>
+                <p>Your 24/7 AI buddy who listens and holds you through everything your mind tells you is too much.</p>
+            </div>
+            <div class="feature-card reveal">
+                <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg></div>
+                <h3>Mood Tracker</h3>
+                <p>Track how you feel each day while SoulMi organizes your patterns to help you understand your emotions.</p>
+            </div>
+            <div class="feature-card reveal">
+                <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></div>
+                <h3>Communities</h3>
+                <p>Connect with others who understand your journey in a moderated, safe, and supportive environment.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="marquee-section">
+        <div class="marquee-content">
+            <span>"SoulMi helped me sleep again."</span> • 
+            <span>"Finally, a place without judgment."</span> • 
+            <span>"My daily sanctuary."</span> • 
+            <span>"The AI actually understands me."</span> • 
+            <span>"Found my perfect therapist in minutes."</span> • 
+            <span>"SoulMi helped me sleep again."</span> • 
+            <span>"Finally, a place without judgment."</span> • 
+            <span>"My daily sanctuary."</span>
+        </div>
+    </div>
+
+    <section id="register" class="cta-section reveal">
+        <div class="cta-glass-box">
+            <h2>Ready to Begin Your Journey?</h2>
+            <p>Join our community and take the first step towards understanding your emotions.</p>
+            <a href="#" class="btn-primary">Register</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h3>SoulMi<span>.</span></h3>
+                <p>Where every soul finds its home.</p>
+            </div>
+            <div class="footer-contact">
+                <h4>Contact</h4>
+                <p>+91 9100907664</p>
+                <p>soulmi.2040@gmail.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 SoulMi Sanctuary. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div class="chat-widget">
+        <button id="chat-toggle" class="chat-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+        </button>
+        <div class="chat-window" id="chat-window">
+            <div class="chat-header">
+                <div class="chat-title">
+                    <div class="online-dot"></div> SoulMi AI
+                </div>
+                <button id="close-chat">×</button>
+            </div>
+            <div class="chat-body" id="chat-body">
+                <div class="message ai-msg">Hi there. I'm SoulMi. This is a safe space. How are you feeling right now?</div>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="chat-input-field" placeholder="Type a message...">
+                <button id="send-btn">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
