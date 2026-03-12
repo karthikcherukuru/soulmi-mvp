@@ -2,9 +2,9 @@
 <html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>SoulMi | A Safe Place for Your Mind</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=3">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -47,6 +47,7 @@
 
             <div class="hero-actions">
                 <a href="#features" class="btn-primary">Explore Platform</a>
+                <button id="open-breathe" class="btn-secondary" style="border: none;">Take a Breath</button>
             </div>
         </div>
         
@@ -74,6 +75,17 @@
             </div>
         </div>
     </section>
+
+    <div id="breathing-modal" class="modal">
+        <div class="modal-content">
+            <button id="close-breathe" class="close-btn">&times;</button>
+            <h2 id="breathe-text">Ready?</h2>
+            <div class="breathe-circle-container">
+                <div class="breathe-circle"></div>
+            </div>
+            <p>Follow the circle to find your center.</p>
+        </div>
+    </div>
 
     <section id="therapists" class="therapists-section">
         <div class="section-header reveal">
@@ -135,6 +147,14 @@
                 <h3>Communities</h3>
                 <p>Connect with others who understand your journey in a moderated, safe, and supportive environment.</p>
             </div>
+        </div>
+    </section>
+
+    <section class="affirmation-section reveal">
+        <div class="affirmation-card">
+            <h3>Your Daily Affirmation</h3>
+            <p id="affirmation-text">"You are enough just as you are."</p>
+            <button id="new-affirmation" class="btn-primary" style="margin-top: 20px;">Draw Another</button>
         </div>
     </section>
 

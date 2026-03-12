@@ -43,17 +43,15 @@ const rootStyles = document.documentElement.style;
 
 moodSlider.addEventListener('input', (e) => {
     const val = e.target.value;
-    // Visually adjust the background colors based on mood input
-    // 0 = Heavy/Anxious (Grayish Blues), 100 = Calm/Light (Bright Lavender/Mint)
     if (val < 40) {
-        rootStyles.setProperty('--soft-blue', '#64748b'); // Slate
-        rootStyles.setProperty('--mint', '#94a3b8');     // Gray-blue
+        rootStyles.setProperty('--soft-blue', '#64748b'); 
+        rootStyles.setProperty('--mint', '#94a3b8');     
     } else if (val >= 40 && val < 70) {
-        rootStyles.setProperty('--soft-blue', '#a3c4f3'); // Reset soft blue
-        rootStyles.setProperty('--mint', '#81e6d9');      // Teal
+        rootStyles.setProperty('--soft-blue', '#a3c4f3'); 
+        rootStyles.setProperty('--mint', '#81e6d9');      
     } else {
         rootStyles.setProperty('--soft-blue', '#a3c4f3');
-        rootStyles.setProperty('--mint', '#8ee4af');      // Original Mint
+        rootStyles.setProperty('--mint', '#8ee4af');      
     }
 });
 
@@ -81,7 +79,7 @@ slider.addEventListener('mousemove', (e) => {
     if (!isDown) return;
     e.preventDefault();
     const x = e.pageX - slider.offsetLeft;
-    const walk = (x - startX) * 2; // Scroll speed
+    const walk = (x - startX) * 2; 
     slider.scrollLeft = scrollLeft - walk;
 });
 
@@ -93,16 +91,13 @@ const sendBtn = document.getElementById('send-btn');
 const chatInput = document.getElementById('chat-input-field');
 const chatBody = document.getElementById('chat-body');
 
-// Toggle chat window
 chatToggle.addEventListener('click', () => chatWindow.classList.toggle('active'));
 closeChat.addEventListener('click', () => chatWindow.classList.remove('active'));
 
-// Handle sending messages
 function sendMessage() {
     const text = chatInput.value.trim();
     if (text === '') return;
 
-    // Add User Message
     const userMsg = document.createElement('div');
     userMsg.classList.add('message', 'user-msg');
     userMsg.textContent = text;
@@ -110,14 +105,12 @@ function sendMessage() {
     chatInput.value = '';
     chatBody.scrollTop = chatBody.scrollHeight;
 
-    // Simulate AI Typing
     const typingIndicator = document.createElement('div');
     typingIndicator.classList.add('typing-indicator');
     typingIndicator.textContent = 'SoulMi AI is typing...';
     chatBody.appendChild(typingIndicator);
     chatBody.scrollTop = chatBody.scrollHeight;
 
-    // Simulate AI Response after 1.5 seconds
     setTimeout(() => {
         chatBody.removeChild(typingIndicator);
         
@@ -140,4 +133,68 @@ function sendMessage() {
 sendBtn.addEventListener('click', sendMessage);
 chatInput.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') sendMessage();
+});
+
+// --- NEW: Breathing Exercise Modal Logic ---
+const breatheBtn = document.getElementById('open-breathe');
+const breatheModal = document.getElementById('breathing-modal');
+const closeBreathe = document.getElementById('close-breathe');
+const breatheText = document.getElementById('breathe-text');
+const breatheCircle = document.querySelector('.breathe-circle');
+let breatheInterval;
+
+breatheBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    breatheModal.classList.add('active');
+    
+    // Start sequence
+    breatheText.innerText = "Breathe In...";
+    breatheCircle.style.transform = "scale(2)";
+    
+    breatheInterval = setInterval(() => {
+        if (breatheText.innerText === "Breathe In...") {
+            breatheText.innerText = "Breathe Out...";
+            breatheCircle.style.transform = "scale(1)";
+        } else {
+            breatheText.innerText = "Breathe In...";
+            breatheCircle.style.transform = "scale(2)";
+        }
+    }, 4000); // 4 seconds in, 4 seconds out
+});
+
+closeBreathe.addEventListener('click', () => {
+    breatheModal.classList.remove('active');
+    clearInterval(breatheInterval);
+    setTimeout(() => {
+        breatheText.innerText = "Ready?";
+        breatheCircle.style.transform = "scale(1)";
+    }, 300);
+});
+
+// --- NEW: Daily Affirmation Logic ---
+const affBtn = document.getElementById('new-affirmation');
+const affText = document.getElementById('affirmation-text');
+const affirmations = [
+    "You are enough just as you are.",
+    "Every storm runs out of rain.",
+    "It's okay to rest and reset.",
+    "Your feelings are completely valid.",
+    "Progress, not perfection.",
+    "You are stronger than you think.",
+    "Breathe. You've got this."
+];
+
+affBtn.addEventListener('click', () => {
+    affText.style.opacity = 0; // Fade out
+    
+    setTimeout(() => {
+        // Pick random affirmation that isn't the current one
+        let newAff = affirmations[Math.floor(Math.random() * affirmations.length)];
+        while(newAff === affText.innerText.replace(/"/g, '')) {
+            newAff = affirmations[Math.floor(Math.random() * affirmations.length)];
+        }
+        
+        affText.innerText = `"${newAff}"`;
+        affText.style.opacity = 1; // Fade in
+    }, 400); // Wait for fade out to complete
 });

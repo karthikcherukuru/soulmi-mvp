@@ -1,6 +1,5 @@
 /* --- Variables & Zen Mode Themes --- */
 :root {
-    /* Light Theme (Default) */
     --primary-lavender: #9b8cf1;
     --primary-hover: #8371eb;
     --soft-blue: #a3c4f3;
@@ -16,7 +15,6 @@
 }
 
 [data-theme="zen"] {
-    /* Zen Mode (Dark) */
     --primary-lavender: #7a65e6;
     --soft-blue: #4a6fa5;
     --mint: #5da97b;
@@ -30,38 +28,39 @@
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+
+/* BUG FIX: Locked Viewport for Mobile Safari 
+   This entirely stops the horizontal wiggle and header misalignment.
+*/
+html, body { 
+    scroll-behavior: smooth; 
+    overflow-x: hidden; 
+    max-width: 100vw;
+    width: 100%;
+}
 
 body {
     font-family: 'Plus Jakarta Sans', sans-serif;
     background-color: var(--bg-light);
     color: var(--text-dark);
     line-height: 1.6;
-    overflow-x: hidden;
+    position: relative;
     transition: background-color 0.5s ease, color 0.5s ease;
 }
 
 /* Background Blobs */
-.bg-shape {
-    position: absolute; filter: blur(80px); z-index: -1; opacity: 0.5;
-    animation: floatBlob 10s infinite alternate; transition: background 0.5s ease;
-}
+.bg-shape { position: absolute; filter: blur(80px); z-index: -1; opacity: 0.5; animation: floatBlob 10s infinite alternate; transition: background 0.5s ease; }
 .shape-1 { top: -10%; left: -10%; width: 500px; height: 500px; background: var(--soft-blue); border-radius: 50%; }
 .shape-2 { top: 20%; right: -10%; width: 600px; height: 600px; background: var(--primary-lavender); border-radius: 50%; animation-delay: 2s; }
 @keyframes floatBlob { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(50px, 50px) scale(1.05); } }
 
 /* --- Navigation & Zen Toggle --- */
 header {
-    position: fixed;
-    top: 0; 
-    left: 0;     /* Added */
-    right: 0;    /* Added */
-    padding: 20px 0;
-    z-index: 1000;
-    transition: var(--transition);
+    position: fixed; top: 0; left: 0; right: 0; width: 100%;
+    padding: 20px 0; z-index: 1000; transition: var(--transition);
 }
 header.scrolled { background: var(--nav-bg); backdrop-filter: blur(12px); box-shadow: 0 4px 20px rgba(0,0,0,0.03); padding: 15px 0; }
-.nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 24px; }
+.nav-container { max-width: 1200px; width: 100%; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 24px; }
 .logo { font-size: 1.5rem; font-weight: 700; color: var(--text-dark); text-decoration: none; }
 .logo span { color: var(--primary-lavender); }
 .nav-links a { text-decoration: none; color: var(--text-muted); font-weight: 500; margin: 0 16px; transition: var(--transition); }
@@ -76,6 +75,8 @@ header.scrolled { background: var(--nav-bg); backdrop-filter: blur(12px); box-sh
 
 .btn-primary { padding: 12px 28px; border-radius: 30px; text-decoration: none; font-weight: 600; background: var(--primary-lavender); color: white; display: inline-block; transition: var(--transition); border: none; cursor: pointer; }
 .btn-primary:hover { background: var(--primary-hover); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(155, 140, 241, 0.4); }
+.btn-secondary { padding: 12px 28px; border-radius: 30px; text-decoration: none; font-weight: 600; background: var(--glass-bg); border: 1px solid var(--glass-border); color: var(--text-dark); display: inline-block; transition: var(--transition); cursor: pointer;}
+.btn-secondary:hover { background: rgba(255,255,255,0.9); transform: translateY(-2px); box-shadow: var(--shadow-soft); }
 
 /* --- Hero & Mood Slider --- */
 .hero { max-width: 1200px; margin: 0 auto; padding: 180px 24px 100px; display: flex; align-items: center; gap: 60px; min-height: 100vh; }
@@ -83,6 +84,7 @@ header.scrolled { background: var(--nav-bg); backdrop-filter: blur(12px); box-sh
 .chip { display: inline-block; padding: 6px 16px; background: rgba(155, 140, 241, 0.1); color: var(--primary-lavender); border-radius: 20px; font-size: 0.85rem; font-weight: 600; margin-bottom: 24px; }
 .hero h1 { font-size: 4rem; line-height: 1.1; color: var(--text-dark); margin-bottom: 24px; letter-spacing: -0.03em; }
 .hero p { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 30px; }
+.hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
 
 .mood-widget { background: var(--glass-bg); backdrop-filter: blur(10px); padding: 20px; border-radius: 16px; border: 1px solid var(--glass-border); margin-bottom: 30px; max-width: 400px; }
 .mood-widget label { display: block; font-size: 0.9rem; font-weight: 600; color: var(--text-dark); margin-bottom: 12px; }
@@ -138,6 +140,12 @@ input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 6px; cur
 .feature-card h3 { font-size: 1.3rem; margin-bottom: 12px; color: var(--text-dark);}
 .feature-card p { color: var(--text-muted); font-size: 0.95rem; }
 
+/* --- NEW: Daily Affirmation Section --- */
+.affirmation-section { padding: 40px 24px 80px; display: flex; justify-content: center; }
+.affirmation-card { background: var(--glass-bg); backdrop-filter: blur(15px); border: 1px solid var(--glass-border); border-radius: 24px; padding: 50px 40px; text-align: center; max-width: 600px; width: 100%; box-shadow: var(--shadow-soft); transition: var(--transition); }
+.affirmation-card h3 { color: var(--primary-lavender); font-size: 1.2rem; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 2px; }
+.affirmation-card p { color: var(--text-dark); font-size: 1.8rem; font-weight: 500; min-height: 80px; transition: opacity 0.4s ease; }
+
 /* --- Infinite Marquee --- */
 .marquee-section { padding: 40px 0; background: var(--primary-lavender); color: white; overflow: hidden; white-space: nowrap; }
 .marquee-content { display: inline-block; font-size: 1.5rem; font-weight: 500; animation: scrollMarquee 25s linear infinite; }
@@ -182,15 +190,34 @@ footer { background: var(--bg-light); padding: 80px 24px 40px; border-top: 1px s
 .chat-input input { flex: 1; padding: 10px 16px; border-radius: 20px; border: 1px solid var(--glass-border); background: var(--bg-light); color: var(--text-dark); outline: none; }
 #send-btn { background: var(--primary-lavender); color: white; border: none; padding: 0 16px; border-radius: 20px; cursor: pointer; font-weight: 600; }
 
+/* --- NEW: Breathing Modal Styles --- */
+.modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); backdrop-filter: blur(8px); z-index: 10000; display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: var(--transition); }
+.modal.active { opacity: 1; pointer-events: all; }
+.modal-content { background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 60px; border-radius: 32px; text-align: center; position: relative; max-width: 500px; width: 90%; box-shadow: var(--shadow-soft); }
+.close-btn { position: absolute; top: 20px; right: 30px; font-size: 2rem; background: none; border: none; color: var(--text-dark); cursor: pointer; }
+#breathe-text { font-size: 2rem; color: var(--text-dark); margin-bottom: 40px; transition: opacity 0.3s; }
+.breathe-circle-container { width: 200px; height: 200px; margin: 0 auto 40px; display: flex; justify-content: center; align-items: center; border-radius: 50%; background: rgba(155, 140, 241, 0.1); }
+.breathe-circle { width: 80px; height: 80px; background: linear-gradient(135deg, var(--soft-blue), var(--primary-lavender)); border-radius: 50%; transition: transform 4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 0 30px rgba(155, 140, 241, 0.4); }
+.modal-content p { color: var(--text-muted); }
+
 /* Utilities */
 .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1); }
 .reveal.active { opacity: 1; transform: translateY(0); }
 
-@media (max-width: 768px) {
+/* --- Restored Media Queries --- */
+@media (max-width: 992px) {
     .hero { flex-direction: column; text-align: center; padding-top: 140px; }
+    .hero p { margin: 0 auto 30px; }
+    .hero-actions { justify-content: center; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 768px) {
     .hero h1 { font-size: 2.8rem; }
     .mood-widget { margin: 0 auto 30px; }
     .nav-links, .nav-btn { display: none; }
     .footer-grid { grid-template-columns: 1fr; }
     .chat-window { width: 300px; right: -10px; }
+    .affirmation-card p { font-size: 1.4rem; }
+    .modal-content { padding: 40px 20px; }
 }
